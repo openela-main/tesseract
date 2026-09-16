@@ -2,7 +2,7 @@
 
 Name:          tesseract
 Version:       4.1.1
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Raw OCR Engine
 
 License:       ASL 2.0
@@ -12,6 +12,8 @@ Source1:       https://github.com/tesseract-ocr/tessdata/archive/%{tessdata_vers
 
 # Tweak location of tessdata folder
 Patch0:        tesseract_datadir.patch
+
+Patch1:        upstream_2f4d2f4bf45c363785d7bf1da29b6628f8939a72.patch
 
 BuildRequires: gcc-c++
 BuildRequires: make
@@ -267,6 +269,7 @@ trained models for the Tesseract Open Source OCR Engine.\
 %prep
 %setup -q -n %{name}-%{version} -a1
 %patch0 -p1
+%patch1 -p1
 
 
 %build
@@ -332,6 +335,9 @@ cp -av tessdata-%{tessdata_version}/* %{buildroot}%{_datadir}/%{name}/tessdata
 
 
 %changelog
+* Tue Aug 25 2026 Pavol Sloboda <psloboda@redhat.com> - 4.1.1-3
+- Resolves: CVE-2026-73066 
+
 * Fri Aug 06 2021 Jiri Kucera <jkucera@redhat.com> - 4.1.1-2
 - Fix subpackages deps
   Related: #1826085
