@@ -2,7 +2,7 @@
 
 Name:          tesseract
 Version:       4.1.1
-Release:       7%{?pre:.%pre}%{?dist}
+Release:       8%{?pre:.%pre}%{?dist}
 Summary:       Raw OCR Engine
 
 License:       ASL 2.0
@@ -11,6 +11,8 @@ Source0:       https://github.com/tesseract-ocr/tesseract/archive/%{version}%{?p
 
 # Tweak location of tessdata folder
 Patch0:        tesseract_datadir.patch
+
+Patch1:        upstream_2f4d2f4bf45c363785d7bf1da29b6628f8939a72.patch
 
 BuildRequires: make
 BuildRequires: automake
@@ -113,6 +115,9 @@ mkdir -p %{buildroot}/%{_datadir}/%{name}/tessdata/
 
 
 %changelog
+* Tue Aug 25 2026 Pavol Sloboda <psloboda@redhat.com> - 4.1.1-8
+- Resolves: CVE-2026-73066
+
 * Tue Aug 10 2021 Mohan Boddu <mboddu@redhat.com> - 4.1.1-7
 - Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
   Related: rhbz#1991688
