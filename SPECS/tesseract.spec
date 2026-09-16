@@ -8,7 +8,7 @@
 
 Name:          tesseract
 Version:       5.3.4
-Release:       6%{?dist}
+Release:       7%{?dist}
 Summary:       Raw OCR Engine
 
 License:       Apache-2.0
@@ -21,6 +21,7 @@ Patch0:        tesseract_cmake.patch
 # Don't assume neon available on arm64/aarch64
 Patch1:        tesseract_neon.patch
 
+Patch2:        upstream_2f4d2f4bf45c363785d7bf1da29b6628f8939a72.patch
 
 BuildRequires: cmake
 BuildRequires: libcurl-devel
@@ -245,6 +246,9 @@ cp -a doc/*.5 %{buildroot}%{_mandir}/man5/
 
 
 %changelog
+* Tue Aug 25 2026 Pavol Sloboda <psloboda@redhat.com> - 5.3.4-7
+- Resolves: CVE-2026-73066
+
 * Tue Oct 29 2024 Troy Dawson <tdawson@redhat.com> - 5.3.4-6
 - Bump release for October 2024 mass rebuild:
   Resolves: RHEL-64018
